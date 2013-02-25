@@ -1,0 +1,74 @@
+<template name="proposals">
+
+  <div class="row-fluid">
+    <div class="action">
+      <div>Proposals status: <span class="btn btn-{{proposalStatusButton 1}}">{{proposalStatus 1}}</span></div>
+    </div>
+  </div>
+
+  <div class="proposals-container">
+    {{#if count}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Track</th>
+          <th>Proposer</th>
+          <th>Joined</th>
+          {{#if currentUser}}<th></th>{{/if}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each hacks}}
+          <tr>
+            <td class="span3">{{ title }}</td>
+            <td clas="span5">{{ description }}</td>
+            <td class="span1">{{ track }}</td>
+            <td class="span2">{{ name}}</td>
+            <td class="span1">{{#if joined}}{{joined.count}}{{else}}0{{/if}}</td>
+            {{#if currentUser}}
+              {{hasJoined currentUser._id}}
+            {{/if}}
+            
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+        {{else}}
+        <h4>Be the first one to submit a proposal!</h4>
+        {{/if}}
+  </div>
+</template>
+
+<template name="proposal">
+  {{#with proposal}}
+    <div class="row-fluid">
+      <div class="span12">
+        <h3>{{title}}</h3>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span4">
+        <p>Proposer: {{name}}</p>
+      </div>
+      <div class="span4 offset4">
+        <p>Hack Track: {{track}}</p>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span10">
+        <h4>Description</h4>
+        <p>{{description}}</p>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span10">
+        <a href="/"><span>↩ Proposals</span></a>
+      </div>
+    </div>
+  {{/with}}
+</template>

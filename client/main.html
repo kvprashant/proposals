@@ -1,0 +1,77 @@
+<head>
+  <title>Devthon Proposals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Devthon Proposals"/>
+  <meta property="og:type" content="hackathon"/>
+  <meta property="og:url" content="http://devthon.org"/>
+  <meta property="og:image" content="http://placehold.it/180x100/000000/ffffff&text=Devthon"/>
+  <meta property="og:site_name" content="Devthon Proposals"/>
+  <meta property="og:description"
+          content="Propose your hacks for other geeks to contribute and ideate"/>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container-proposal">
+
+        {{> header}}
+
+        <div class="row-fluid">
+          {{#isSession "main"}}
+            <div class="span9">
+              {{#unless currentUser}}
+                <h4>Sign in to join a hack proposal or to propose your own hack</h4>
+              {{/unless}}
+            </div>
+
+            <div class="span3">
+              <div class="action">
+                {{#if currentUser}}
+                  <a href="/proposal/new" 
+                     class="btn btn-large btn-inverse">
+                    <span>+ Propose Hack</span>
+                  </a>
+                {{/if}}
+              </div>
+            </div>
+          {{/isSession}}
+        </div>
+
+          {{#isSession "main"}}
+            <hr>
+          {{/isSession}}
+
+        <div class="row-fluid">
+          {{#isSession "main"}}
+            {{> trackset}}
+            <hr>
+            {{> proposals}}
+          {{/isSession}}
+
+          {{#isSession "proposalNew"}}
+            {{> proposalNewForm}}
+          {{/isSession}}
+
+          {{#isSession "proposalFilled"}}
+            <div><h3>Thank you</h3></div>
+            <div><a href="/">↩ Home</a></div>
+          {{/isSession}}
+
+          {{#isSession "proposalView"}}
+            {{> proposal}}
+          {{/isSession}}
+
+        </div>
+
+      </div>
+      <div id="push"></div>
+    </div>
+
+    {{> footer}}
+
+</body>

@@ -1,0 +1,53 @@
+<template name="proposalNewForm">
+  <div class="alert-container"></div>
+
+  <form id="newProposal">
+    <fieldset>
+      <legend>New Hack Proposal</legend>
+
+      <div class="control-group control-group-title">
+        <label class="control-label" for="title">Title*</label>
+        <div class="controls">
+          <input id="title" class="{{boxWidth}}" type="text" placeholder="Proposal title">
+          <span class="help-inline"></span>
+        </div>
+      </div>
+
+      <div class="control-group control-group-description">
+        <label class="control-label" for="description">Description*</label>
+        <div class="controls">
+          <textarea id="description" class="{{boxWidth}}" rows="5" placeholder="A little something about the proposal"></textarea>
+          <span class="help-inline"></span>
+        </div>
+      </div>
+
+      <div class="control-group control-group-tracks">
+        <label class="control-label" >Hack Track*</label>
+        <label class="control-label radio inline">
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          Web
+        </label>
+        <label class="control-label radio inline">
+          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+          Mobile
+        </label>
+        <label class="control-label radio inline">
+          <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+          Hardware
+        </label>
+      </div>
+
+      <span class="field-block"></span>
+      <span class="field-block"></span>
+      
+      <label>Requirements</label>   
+      <input id="requirements" class="{{boxWidth}}" type="text">
+      <span class="help-block">E.g. Leap Motion device, Arduino board, etc</span>
+      <span class="field-block"></span>
+      <span class="field-block"></span>
+      
+      <button id="submitProposal" type="submit" class="btn spacing">Submit</button>
+      <button id="cancelSubmitProposal" type="reset" class="btn spacing">Cancel</button>
+    </fieldset>
+  </form>
+</template>

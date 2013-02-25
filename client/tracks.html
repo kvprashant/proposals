@@ -1,0 +1,24 @@
+<template name="trackset">
+  <div class="tracks">
+    <ul class="thumbnails">
+	  {{#each tracks}}
+            {{> trackbox }}
+          {{/each}}
+    </ul>
+  </div>
+</template>
+
+<template name="trackbox">
+  <li class="span4 session">
+    <a class="thumbnail" href="#">
+      <div class="discussion">
+	<h3>{{ name }}</h3>
+      </div>
+      <div class="description">
+	<p>{{ description }}</p>
+      </div>
+    </a>
+  </li>
+</template>
+
+

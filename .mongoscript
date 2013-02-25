@@ -1,0 +1,10 @@
+db.meteor_accounts_loginServiceConfiguration.insert([{ "service" : "twitter",
+    "consumerKey" : "P0e4QoNnJM2UYSOYFEbNw",
+    "secret" : "vPgwCLx0WP9mbSaQJDrt6MDlLrVwSXyPVOoHjk8OYmQ" },
+  { "service" : "github",
+    "clientId" : "57e548dca7b09724b8ca",
+    "secret" : "8d7e1c9efa695512551429e22b76188406fd887d" },
+  { "service" : "google",
+    "clientId" : "809507966593.apps.googleusercontent.com",
+    "secret" : "7DSX7O40NWbawNJLIYu3aNnI"
+}])
