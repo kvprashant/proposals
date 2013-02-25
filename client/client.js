@@ -168,19 +168,34 @@
       'click #vote': function(evt) {
         console.log('upvote');
       },
-      'click #joinProposal': function(evt) {
+      'click .join_yes': function(evt) {
         Meteor.call("joinProposal", {
           proposalId: this._id,
-          name: Meteor.user().profile.name,
-          userId: Meteor.user()._id,
-        }, function(error, result){
-          if (error) {
-            showAlert("error", "Uh-oh!", "Unable to add you to the proposal. Try again in some time");
-          } else {
-            showAlert("success", "Yay!", "An awesome hacker just joined an awesome proposal!");
-          }
-        });
-      }
+        }, function(error, result) {
+             if (error) {
+               switch (error.error) {
+               case 409:
+                 $(evt.target).removeClass("join_yes").addClass("join_no");
+                 $(evt.target).click();
+                 break;
+               };
+               return;
+             }
+             showAlert("success", ":)", "You are now part of a hack!");
+           });
+       },
+      'click .join_no': function(evt) {
+        Meteor.call("unjoinProposal", {
+          proposalId: this._id,
+        }, function(error, result) {
+             if (error) {
+                 $(evt.target).removeClass("join_no").addClass("join_yes");
+                 $(evt.target).click();
+               return;
+             }
+             showAlert("error", ":(", "You haven't yet joined any hacks!");
+           });
+       }
     });
 
     Template.proposal.proposal = function() {
@@ -191,3 +206,21 @@
     Template.proposals.count = function() {
       return !!Proposals.findOne();
     }
+
+    Template.setup.created = function() {
+      if (!(window._gaq != null)) {
+        window._gaq = [];
+        _gaq.push(['_setAccount', 'UA-38480319-2']);
+        _gaq.push(['_trackPageview']);
+        return (function() {
+          var ga, gajs, s;
+          ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          gajs = '.google-analytics.com/ga.js';
+          ga.src = document.location.protocol === 'https:' ? 'https://ssl' + gajs : 'https://www' + gajs;
+          s = document.getElementsByTagName('script')[0];
+          return s.parentNode.insertBefore(ga, s);
+        })();
+      }
+  };

@@ -1,6 +1,10 @@
 <template name="proposals">
 
   <div class="row-fluid">
+    <div class="alert-container"></div>
+  </div>
+
+  <div class="row-fluid">
     <div class="action">
       <div>Proposals status: <span class="btn btn-{{proposalStatusButton 1}}">{{proposalStatus 1}}</span></div>
     </div>
@@ -28,7 +32,7 @@
             <td class="span2">{{ name}}</td>
             <td class="span1">{{#if joined}}{{joined.count}}{{else}}0{{/if}}</td>
             {{#if currentUser}}
-              {{hasJoined currentUser._id}}
+              {{join_button _id}}
             {{/if}}
             
           </tr>

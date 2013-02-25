@@ -19,13 +19,13 @@
       return status;
     });
 
-    Handlebars.registerHelper('hasJoined', function(userId) {
-      var hasJoined = Proposals.findOne({ "_id" : this._id, "joined.users.userId" : userId });
-      if (hasJoined) {
-        return '<td><button id="joinProposal" type="button" \
-                class="btn btn-mini btn-success">Join</button></td>';
+    Handlebars.registerHelper('join_button', function(proposalId) {
+      var hasJoined = Proposals.findOne({ "_id" : proposalId, "joined.users.userId" : Meteor.user()._id });
+      if (!hasJoined) {
+        return new Handlebars.SafeString('<td><button id="joinProposal" type="button" \
+                class="btn btn-mini btn-warning join_yes">Join</button></td>');
       } else {
-        return '<td><button id="unjoinProposal" type="button" \
-                class="btn btn-mini btn-warning">Joined</button></td>';
+        return new Handlebars.SafeString('<td><button id="unjoinProposal" type="button" \
+                class="btn btn-mini btn-success join_no">Joined</button></td>');
       }
     });
