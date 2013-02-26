@@ -7,8 +7,6 @@ autopublish
 insecure
 preserve-inputs
 accounts-twitter
-accounts-google
-accounts-github
 accounts-ui-unstyled
 less
 accounts-base
