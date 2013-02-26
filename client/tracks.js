@@ -8,6 +8,7 @@
 
     Template.trackbox.events({
       'click a': function(event) {
+        event.preventDefault();
         if (event.currentTarget.getAttribute("class") == "thumbnail selected") {
           Session.set("selected", "");
           event.currentTarget.setAttribute("class", "thumbnail");
