@@ -25,6 +25,14 @@ body {
 /* The html and body elements cannot have any padding or margin. */
 }
 
+h1, h2, h3 {
+  line-height: 1.1em;
+}
+
+#login-buttons .login-display-name {
+  .fontfamily;
+}
+
 textarea {
   .fontfamily;
 }
@@ -46,20 +54,20 @@ textarea {
   height: 60px;
 }
 
+.page-header {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 h1.brand {
   .fontfamily;
   font-size: 28px;
   font-weight: 10px;
   text-decoration: none;
-
-  &:hover {
-    text-decoration: none;
-  }
 }
 
 #login-buttons {
-  margin-top: 12px;
-
   a {
     text-decoration: none;
   }
@@ -89,17 +97,44 @@ h1.brand {
 
   .thumbnail {
     padding: 18px;
-    height: 12em;
+    min-height: 21em;
+    float: left;
+
+    p {
+      color: #000000;
+    }
+
+    &.selected {
+      color: #005580;
+      border-color: #0088cc;
+      background-color: #EDEDED;
+      text-decoration: none;
+      -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+      -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+      box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+    }
+
+    .description {
+      line-height: 1.4em;
+    }
+
+    .proposer {
+      padding-top: 1em;
+    }
+
+    .discussion {
+      padding-bottom: 1em;
+      border-bottom: 1px solid #D2D2D2;
+    }
+
+    .join-action {
+      margin-left: 85%;
+    }
 
     &:hover {
       background-color: #EDEDED;
       text-decoration: none;
     }
-
-    .description {
-      text-align: justify;
-    }
-
   }
 }
 

@@ -1,4 +1,5 @@
 <template name="trackset">
+
   <div class="tracks">
     <ul class="thumbnails">
 	  {{#each tracks}}
@@ -6,14 +7,22 @@
           {{/each}}
     </ul>
   </div>
-  <hr>
 </template>
 
 <template name="trackbox">
   <li class="span4 session">
-    <a class="thumbnail" href="#">
+    <a class="thumbnail pull-left" href="#">
+      <div class="join-action pull-right">
+	<p>{{#if currentUser}}{{join_button _id}}{{/if}}</p>
+      </div>
       <div class="discussion">
-	<h3>{{ name }}</h3>
+	<h3>{{ title }}</h3>
+      </div>
+      <div class="proposer">
+	<p>Proposer: {{ name }}</p>
+      </div>
+      <div class="joined">
+	<p>Hackers: {{#if joined}}{{list joined.users name}}{{else}}None{{/if}}</p>
       </div>
       <div class="description">
 	<p>{{ description }}</p>

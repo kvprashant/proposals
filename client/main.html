@@ -35,10 +35,7 @@
             <div class="span3">
               <div class="action">
                 {{#if currentUser}}
-                  <a href="/proposal/new" 
-                     class="btn btn-large btn-inverse">
-                    <span>+ Propose Hack</span>
-                  </a>
+                  {{proposalStatus 1}}
                 {{/if}}
               </div>
             </div>
@@ -52,7 +49,7 @@
         <div class="row-fluid">
           {{#isSession "main"}}
             {{> trackset}}
-            {{> proposals}}
+            {{!> proposals}}
           {{/isSession}}
 
           {{#isSession "proposalNew"}}
