@@ -22,10 +22,10 @@
     Handlebars.registerHelper('join_button', function(proposalId) {
       var hasJoined = Proposals.findOne({ "_id" : proposalId, "joined.users.userId" : Meteor.user()._id });
       if (!hasJoined) {
-        return new Handlebars.SafeString('<td><button id="joinProposal" type="button" \
+        return new Handlebars.SafeString('<td><button type="button" \
                 class="btn btn-mini btn-warning join_yes">Join</button></td>');
       } else {
-        return new Handlebars.SafeString('<td><button id="unjoinProposal" type="button" \
+        return new Handlebars.SafeString('<td><button type="button" \
                 class="btn btn-mini btn-success join_no">Joined</button></td>');
       }
     });

@@ -179,7 +179,7 @@
                  $(evt.target).click();
                  break;
                };
-               return;
+             return;
              }
              showAlert("success", ":)", "You are now part of a hack!");
            });
@@ -189,8 +189,8 @@
           proposalId: this._id,
         }, function(error, result) {
              if (error) {
-                 $(evt.target).removeClass("join_no").addClass("join_yes");
-                 $(evt.target).click();
+               $(evt.target).removeClass("join_no").addClass("join_yes");
+               $(evt.target).click();
                return;
              }
              showAlert("error", ":(", "You haven't yet joined any hacks!");
