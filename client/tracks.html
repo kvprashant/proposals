@@ -1,7 +1,9 @@
 <template name="trackset">
-  <div class="row-fluid">
+  <div class="row">
     <div class="lead">
-      <h3>Be the first one to propose a hack!</h3>
+      {{#unless count}}
+        <h3>Be the first one to propose a hack!</h3>
+      {{/unless}}
     </div>
   </div>
 
@@ -42,14 +44,14 @@
       <div class="discussion">
 	<h3>{{ title }}</h3>
       </div>
+      <div class="description">
+	<p>{{ description }}</p>
+      </div>
       <div class="proposer">
 	<p>Proposer: {{ name }}</p>
       </div>
       <div class="joined">
 	<p>Hackers: {{#if joined}}{{list joined.users name}}{{else}}None{{/if}}</p>
-      </div>
-      <div class="description">
-	<p>{{ description }}</p>
       </div>
     </a>
   </li>
