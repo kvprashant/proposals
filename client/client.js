@@ -177,10 +177,18 @@
       'click .join_no': function(evt) {
         Meteor.call("unjoinProposal", {
           proposalId: this._id,
+          owner: this.userId
         }, function(error, result) {
              if (error) {
-               $(evt.target).removeClass("join_no").addClass("join_yes");
-               $(evt.target).click();
+               switch (error.error) {
+               case 403:
+                 $(evt.target).removeClass("join_no").removeClass("join_yes");
+                 break;
+               default:
+                 $(evt.target).removeClass("join_no").addClass("join_yes");
+                 $(evt.target).click();
+                 break;
+               }
                return;
              }
            });

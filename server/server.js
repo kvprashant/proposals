@@ -43,9 +43,16 @@ Meteor.startup(function () {
       if (!Meteor.user()) {
         throw new Meteor.Error(402, "You must be logged in to join a proposal");
       }
+
       // required parameter checks here
       if (!options.proposalId)
            throw new Meteor.Error(400, "Unable to update. Refresh the page and try again");
+
+      if (!options.owner)
+           throw new Meteor.Error(401, "Cannot perform operation without relevant data");
+
+      if (options.owner == Meteor.user()._id)
+           throw new Meteor.Error(403, "Owner cannot unjoin own proposal");
 
       // check if exists
       if (Proposals.findOne({ _id : options.proposalId, "joined.users.userId" : Meteor.user()._id }) === undefined)
