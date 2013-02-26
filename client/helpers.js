@@ -20,12 +20,16 @@
     });
 
     Handlebars.registerHelper('join_button', function(proposalId) {
-      var hasJoined = Proposals.findOne({ "_id" : proposalId, "joined.users.userId" : Meteor.user()._id });
-      if (!hasJoined) {
+      // first check if user has joined any proposal
+      var hasJoined = Proposals.findOne({ "joined.users.userId" : Meteor.user()._id });
+      if (hasJoined) { // has joined one hack
+        if (hasJoined._id == proposalId) { // check if same proposal
+          // show Joined button
+          return new Handlebars.SafeString('<td><button type="button" \
+                  class="btn btn-mini btn-success join_no">Joined</button></td>');
+        }
+      } else { // not joined any hacks. show all Join button
         return new Handlebars.SafeString('<td><button type="button" \
                 class="btn btn-mini btn-warning join_yes">Join</button></td>');
-      } else {
-        return new Handlebars.SafeString('<td><button type="button" \
-                class="btn btn-mini btn-success join_no">Joined</button></td>');
       }
     });
