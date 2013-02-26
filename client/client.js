@@ -149,14 +149,6 @@
       }
     });
 
-    function showAlert(type, title, message) {
-         $(".alert-container").html('<div class="alert fade alert-' + type + '"> \
-                                       <button type="button" class="close" \
-                                               data-dismiss="alert">&times;</button>\
-                                       <strong>' + title + '</strong> ' + message + '</div>');
-         $(".alert").addClass("in");
-    }
-
     Template.proposals.hacks = function() {
       return Proposals.find();
     }
@@ -179,9 +171,7 @@
                  $(evt.target).click();
                  break;
                };
-             return;
              }
-             showAlert("success", ":)", "You are now part of a hack!");
            });
        },
       'click .join_no': function(evt) {
@@ -193,7 +183,6 @@
                $(evt.target).click();
                return;
              }
-             showAlert("error", ":(", "You haven't yet joined any hacks!");
            });
        }
     });
@@ -223,4 +212,13 @@
           return s.parentNode.insertBefore(ga, s);
         })();
       }
-  };
+    };
+
+    function showAlert(type, title, message) {
+         $(".alert-container").html('<div class="alert fade alert-' + type + '"> \
+                                       <button type="button" class="close" \
+                                               data-dismiss="alert">&times;</button>\
+                                       <strong>' + title + '</strong> ' + message + '</div>');
+         $(".alert").addClass("in");
+    }
+
