@@ -21,9 +21,9 @@
 
         {{> header}}
 
-        <div class="row-fluid">
+        <div class="row">
           {{#isSession "main"}}
-            <div class="span9">
+            <div class="span6">
               {{#unless currentUser}}
                 <h4>Sign in to join a hack proposal or to propose your own hack</h4>
               {{/unless}}
@@ -32,7 +32,7 @@
               {{/if}}
             </div>
 
-            <div class="span3">
+            <div class="span2 pull-right">
               <div class="action">
                 {{#if currentUser}}
                   {{proposalStatus 1}}
@@ -46,7 +46,6 @@
             <hr>
           {{/isSession}}
 
-        <div class="row-fluid">
           {{#isSession "main"}}
             {{> trackset}}
             {{!> proposals}}
@@ -64,8 +63,6 @@
           {{#isSession "proposalView"}}
             {{> proposal}}
           {{/isSession}}
-
-        </div>
 
       </div>
       <div id="push"></div>

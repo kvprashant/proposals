@@ -1,11 +1,9 @@
 <template name="trackset">
-  <div class="row">
+  {{#unless count}}
     <div class="lead">
-      {{#unless count}}
-        <h3>Be the first one to propose a hack!</h3>
-      {{/unless}}
+      <h3>Be the first one to propose a hack!</h3>
     </div>
-  </div>
+  {{/unless}}
 
   <div class="tracks">
     <ul class="thumbnails">
@@ -23,8 +21,8 @@
 </template>
 
 <template name="vertical">
-  <li class="span4 vertical">
-    <a class="thumbnail pull-left" href="#">
+  <li class="span3 vertical">
+    <a class="thumbnail" href="#">
       <div class="track">
 	<h3>{{ name }}</h3>
       </div>
@@ -36,8 +34,8 @@
 </template>
 
 <template name="trackbox">
-  <li class="span4 session">
-    <a class="thumbnail pull-left" href="#">
+  <li class="span3 session">
+    <a class="thumbnail" href="#">
       <div class="join-action pull-right">
 	<p>{{#if currentUser}}{{join_button _id}}{{/if}}</p>
       </div>
