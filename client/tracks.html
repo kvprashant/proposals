@@ -1,12 +1,36 @@
 <template name="trackset">
+  <div class="row-fluid">
+    <div class="lead">
+      <h3>Be the first one to propose a hack!</h3>
+    </div>
+  </div>
 
   <div class="tracks">
     <ul class="thumbnails">
-	  {{#each tracks}}
-            {{> trackbox }}
-          {{/each}}
+      {{#if count}}
+        {{#each tracks}}
+          {{> trackbox }}
+        {{/each}}
+      {{else}}
+        {{#each verticals}}
+          {{> vertical}}
+        {{/each}}
+      {{/if}}
     </ul>
   </div>
+</template>
+
+<template name="vertical">
+  <li class="span4 vertical">
+    <a class="thumbnail pull-left" href="#">
+      <div class="track">
+	<h3>{{ name }}</h3>
+      </div>
+      <div class="about">
+	<p>{{ description }}</p>
+      </div>
+    </a>
+  </li>
 </template>
 
 <template name="trackbox">

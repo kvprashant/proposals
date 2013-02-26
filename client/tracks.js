@@ -51,3 +51,26 @@
        }
     });
 
+    Template.trackset.verticals = function() {
+      return [
+         {
+             "name" : "Web Hacks",
+             "description" : "Hacks around web frameworks on Python (Django, web2py, etc), \
+                              PHP (Codeigniter, Yii, Drupal, etc), Javascript (Node.js, meteorjs, etc) \
+                              or any other framework you can think of!",
+             "link" : "web"
+         },
+         {
+             "name" : "Mobile Hacks",
+             "description" : "Project ideas and hacks using mobile operating systems like \
+                              Android and iOS or mobile development frameworks like Phonegap, Sencha, Kivy, etc",
+             "link": "mobile"
+         },
+         {
+             "name" : "Hardware hacks",
+             "description" : "Get involved in awesome hardware hacks using Leap Motion, \
+                              Arduino, Raspberry Pi or any hardware. You can get your own hardware too!",
+             "link" : "hardware"
+         }
+       ]
+    }
