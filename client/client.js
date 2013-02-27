@@ -1,10 +1,3 @@
-    Accounts.ui.config({
-      requestPermissions: {
-        facebook: ['user_likes'],
-        github: ['user', 'repo']
-      }
-    })
-
     var PAGE_ID = "page_id";
 
     var ProposalsRouter = Backbone.Router.extend({
