@@ -1,5 +1,6 @@
     var settings = {
       maxTitle : 50,
+      maxSummary : 200
     }
 
     var PAGE_ID = "page_id";
@@ -55,6 +56,10 @@
       })
     }
 
+    Template.proposalNewForm.summaryCount = function() {
+      return settings.maxSummary;
+    }
+
     Template.proposalNewForm.boxWidth = "span9";
 
     Template.proposalNewForm.events({
@@ -63,6 +68,12 @@
       },
       'focus #title': function() {
         document.getElementById('titleCountHolder').style.display = "block";
+      },
+      'blur #description': function() {
+        document.getElementById('summaryCountHolder').style.display = "none";
+      },
+      'focus #description': function() {
+        document.getElementById('summaryCountHolder').style.display = "block";
       },
       'keyup #title': function(event) {
         var counter = settings.maxTitle - event.currentTarget.value.length;
@@ -81,6 +92,23 @@
 
         document.getElementById('titleCount').textContent = counter;
       },
+      'keyup #description': function(event) {
+        var counter = settings.maxSummary - event.currentTarget.value.length;
+
+        if (counter <= 25) {
+          document.getElementById('summaryCountHolder').style.color = "orange";
+        }
+
+        if (counter <= 0) {
+          document.getElementById('summaryCountHolder').style.color = "red";
+        }
+
+        if (counter > 25) {
+          document.getElementById('summaryCountHolder').style.color = "black";
+        }
+
+        document.getElementById('summaryCount').textContent = counter;
+      },
       'click #submitProposal': function(event) {
         event.preventDefault();
 
@@ -94,8 +122,15 @@
                                    .text("Too many characters here. Keep it simple silly!");
         }
 
+        if (document.getElementById("description").value.length > 200) {
+          errors = true;
+          $('.control-group-description').addClass('error')
+                                   .find('.help-inline')
+                                   .text("Too many characters here. Keep it simple silly!");
+        }
+
         if (errors) {
-          showAlert("error", "Too many characters!", "Keep it simple silly :)");
+          showAlert("error", "Uh-oh!", "Let's clear those errors shall we?");
           return false;
         }
 

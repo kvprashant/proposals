@@ -15,10 +15,11 @@
       </div>
 
       <div class="control-group control-group-description">
-        <label class="control-label" for="description">Summary*</label>
+        <label class="pull-left control-label" for="description">Summary*</label>
+        <label id="summaryCountHolder" class="counter pull-right"><span id="summaryCount">{{summaryCount}}</span></label>
         <div class="controls">
           <textarea id="description" class="{{boxWidth}}" rows="5" 
-                    placeholder="Keep it short: Summary of the project, the framework/tools and final hack features"></textarea>
+                    placeholder="In 200 words: Summary of the project, the framework/tools and final hack features"></textarea>
           <span class="help-inline"></span>
         </div>
       </div>
