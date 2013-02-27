@@ -1,3 +1,7 @@
+    var settings = {
+      maxTitle : 50,
+    }
+
     var PAGE_ID = "page_id";
 
     var ProposalsRouter = Backbone.Router.extend({
@@ -45,12 +49,56 @@
       return "Copyright © 2013 <a href='http://devthon.org' target='_blank'>Devthon</a>.";
     }
 
+    Template.proposalNewForm.rendered = function() {
+      _.each(document.getElementsByClassName('counter'), function(element) {
+        element.style.display = "none";
+      })
+    }
+
     Template.proposalNewForm.boxWidth = "span9";
 
     Template.proposalNewForm.events({
+      'blur #title': function() {
+        document.getElementById('titleCountHolder').style.display = "none";
+      },
+      'focus #title': function() {
+        document.getElementById('titleCountHolder').style.display = "block";
+      },
+      'keyup #title': function(event) {
+        var counter = settings.maxTitle - event.currentTarget.value.length;
+
+        if (counter <= 8) {
+          document.getElementById('titleCountHolder').style.color = "orange";
+        }
+
+        if (counter <= 0) {
+          document.getElementById('titleCountHolder').style.color = "red";
+        }
+
+        if (counter > 5) {
+          document.getElementById('titleCountHolder').style.color = "black";
+        }
+
+        document.getElementById('titleCount').textContent = counter;
+      },
       'click #submitProposal': function(event) {
         event.preventDefault();
+
+        var errors = false;
         $('.alert').alert('close');
+
+        if (document.getElementById("title").value.length > 50) {
+          errors = true;
+          $('.control-group-title').addClass('error')
+                                   .find('.help-inline')
+                                   .text("Too many characters here. Keep it simple silly!");
+        }
+
+        if (errors) {
+          showAlert("error", "Too many characters!", "Keep it simple silly :)");
+          return false;
+        }
+
         var tracks = {"option1" : "web", "option2" : "mobile", "option3" : "hardware" };
         var choice = $('input[type=radio]:checked').val();
 
@@ -81,6 +129,8 @@
                    Meteor.logout();
                    Router.setList('/');
                    break;
+                 case 413:
+                   showAlert("error", "Uh-oh!", error.reason);
                  }
                } else {
                  Router.setList('proposal/done');
@@ -104,15 +154,13 @@
       'click #cancelSubmitProposal': function(event) {
         Router.setList('/'); // TODO to go to previous page
       },
-      'focus input': function(evt) {
-        $(evt.target).parents('.control-group').removeClass('error');
+      'focus, click input': function(evt) {
+        $(evt.target).parents('.control-group').removeClass('error').find('.help-inline').text("");
       },
       'focus textarea': function(evt) {
-        $(evt.target).parents('.control-group').removeClass('error');
+        $(evt.target).parents('.control-group').removeClass('error').find('.help-inline').text("");
       }
     });
-
-
     Template.proposals.hacks = function() {
       return Proposals.find();
     }

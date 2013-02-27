@@ -10,6 +10,11 @@ Meteor.startup(function () {
           options.description.length &&
           typeof options.track.length && typeof options.track === "string"))
            throw new Meteor.Error(400, "Hack proposals require Title, Description and Hack Track.");
+
+      if ( options.title.length > 50 || options.description.length > 200 ) {
+        throw new Meteor.Error(413, "Title/Summary is not within the limit");
+      }
+      
       // TODO length, userId, checks
       if (! (this.userId && options.name ))
         throw new Meteor.Error(401, "You're not logged in");
