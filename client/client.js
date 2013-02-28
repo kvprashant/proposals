@@ -1,5 +1,5 @@
     var settings = {
-      maxTitle : 50,
+      maxTitle : 45,
       maxSummary : 200
     }
 
@@ -54,6 +54,10 @@
       _.each(document.getElementsByClassName('counter'), function(element) {
         element.style.display = "none";
       })
+    }
+
+    Template.proposalNewForm.titleCount = function() {
+      return settings.maxTitle;
     }
 
     Template.proposalNewForm.summaryCount = function() {

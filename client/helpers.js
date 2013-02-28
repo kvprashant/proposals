@@ -45,5 +45,5 @@
     Handlebars.registerHelper('list', function(hackers, owner) {
       var names = _.pluck(hackers, 'name');
       var joined = _.without(names, owner).join(", ");
-      return joined || "None";
+      return joined || "Be the first to join!";
     });
