@@ -7,13 +7,12 @@
     }
 
     Template.trackbox.events({
-      'click a': function(event) {
-        event.preventDefault();
-        $(".thumbnail").removeClass("selected");
+      'click div.thumbnail': function(event) {
         if (event.currentTarget.getAttribute("class") == "thumbnail selected") {
           Session.set("selected", "");
           event.currentTarget.setAttribute("class", "thumbnail");
         } else {
+          $(".thumbnail").removeClass("selected");
           Session.set("selected", this._id);
           event.currentTarget.setAttribute("class", "thumbnail selected");
         }

@@ -34,7 +34,7 @@
                   class="btn btn-mini btn-success join_no">Joined</button></td>');
         } else {
           return new Handlebars.SafeString('<td><button type="button" \
-                  class="btn btn-mini btn-disable">Joined</button></td>');
+                  class="btn btn-mini btn-disable">Proposed</button></td>');
         }
       } else { // not joined any hacks. show all Join button
         return new Handlebars.SafeString('<td><button type="button" \
