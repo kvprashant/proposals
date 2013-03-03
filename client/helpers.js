@@ -42,8 +42,15 @@
       }
     });
 
-    Handlebars.registerHelper('list', function(hackers, owner) {
-      var names = _.pluck(hackers, 'name');
-      var joined = _.without(names, owner).join(", ");
-      return joined || "Be the first to join!";
+    Handlebars.registerHelper('list', function(hackers, owner, handle) {
+      var names = _.without(_.pluck(hackers, 'name'), owner);
+      var handles = _.without(_.pluck(hackers, 'handle'), handle);
+      var joined = _.object(names, handles);
+      if (_.size(joined)) {
+        joined = _.map(joined, function(handle, name){
+                         return '<a href="http://twitter.com/' + handle + '">' + name + '</a>';
+        }).join(", ");
+        return new Handlebars.SafeString(joined);
+      }
+      return "Be the first to join!";
     });

@@ -1,5 +1,9 @@
 Meteor.startup(function () {
 
+  function getHandle(_id) {
+    return Meteor.users.findOne({"_id" : Meteor.user()._id}).services.twitter.screenName;
+  }
+
   Meteor.methods({
     // handle create new proposal
     createProposal: function(options) {
@@ -18,7 +22,15 @@ Meteor.startup(function () {
       // TODO length, userId, checks
       if (! (this.userId && options.name ))
         throw new Meteor.Error(401, "You're not logged in");
-      options.joined = { count : 1, users : [ { "name" : Meteor.user().profile.name, "userId" : Meteor.user()._id } ] }
+
+      options.handle = getHandle(Meteor.user()._id);
+      options.joined = { count : 1, users : [ {
+                                                "name" : Meteor.user().profile.name, 
+                                                "userId" : Meteor.user()._id, 
+                                                "handle" : getHandle(Meteor.user()._id)
+                                              }
+                                            ] 
+                        }
       return Proposals.insert(options);
     },
     // handle proposal join
@@ -38,7 +50,11 @@ Meteor.startup(function () {
       return Proposals.update( { _id : options.proposalId }, 
                   {
                     $inc : { "joined.count" : 1 }, 
-                    $push: { "joined.users" : { "name" : Meteor.user().profile.name, "userId" : Meteor.user()._id } }
+                    $push: { "joined.users" : { "name" : Meteor.user().profile.name, 
+                                                "userId" : Meteor.user()._id,
+                                                "handle" : getHandle(Meteor.user()._id)
+                                              } 
+                            }
                   }
              );
     },

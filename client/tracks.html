@@ -35,7 +35,7 @@
 
 <template name="trackbox">
   <li class="span3 session">
-    <a class="thumbnail" href="#">
+    <div class="thumbnail">
       <div class="join-action pull-right">
 	<p>{{#if currentUser}}{{join_button _id}}{{/if}}</p>
       </div>
@@ -45,13 +45,13 @@
       <div class="description">
 	<p>{{ description }}</p>
       </div>
-      <div class="proposer">
-	<p>Proposer: {{ name }}</p>
+      <div class="proposer" data-id="{{userId}}">
+	<p>Proposer: <a href="http://twitter.com/{{handle}}">{{name}}</a></p>
       </div>
       <div class="joined">
-	<p>Hackers: {{#if joined}}{{list joined.users name}}{{/if}}</p>
+	<p>Hackers: {{#if joined}}{{list joined.users name handle}}{{/if}}</p>
       </div>
-    </a>
+    </div>
   </li>
 </template>
 
