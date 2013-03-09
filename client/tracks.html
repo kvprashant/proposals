@@ -34,25 +34,28 @@
 </template>
 
 <template name="trackbox">
-  <li class="span3 session">
-    <div class="thumbnail">
+  <li class="span3 session pull-left">
+    <div class="thumbnail pull-left">
       <div class="join-action pull-right">
 	<p>{{#if currentUser}}{{join_button _id}}{{/if}}</p>
       </div>
-      <div class="discussion">
+      <div class="discussion pull-left">
 	<h3>{{ title }}</h3>
       </div>
-      <div class="description">
+      <div class="description pull-left">
 	<p>{{ description }}</p>
       </div>
-      <div class="proposer" data-id="{{userId}}">
-	<p>Proposer: <a href="http://twitter.com/{{handle}}">{{name}}</a></p>
-      </div>
-      <div class="joined">
+      <div class="joined pull-left">
 	<p>Hackers: {{#if joined}}{{list joined.users name handle}}{{/if}}</p>
       </div>
     </div>
   </li>
 </template>
 
-
+<template name="twitter">
+  <a href="https://twitter.com/share" 
+     class="twitter-share-button" 
+     data-related="prashantkv,twiteriyer" 
+     data-text="Hack on the '{{this}}' project during @devthon!"
+     data-count="none"></a>
+</template>

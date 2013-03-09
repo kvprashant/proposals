@@ -43,8 +43,8 @@
     });
 
     Handlebars.registerHelper('list', function(hackers, owner, handle) {
-      var names = _.without(_.pluck(hackers, 'name'), owner);
-      var handles = _.without(_.pluck(hackers, 'handle'), handle);
+      var names = _.pluck(hackers, 'name');
+      var handles = _.pluck(hackers, 'handle');
       var joined = _.object(names, handles);
       if (_.size(joined)) {
         joined = _.map(joined, function(handle, name){
