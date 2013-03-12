@@ -34,8 +34,11 @@
 </template>
 
 <template name="trackbox">
-  <li class="span3 session pull-left">
-    <div class="thumbnail pull-left">
+  <li class="span3 session">
+    <div class="thumbnail">
+      <div class="tweet-share pull-left">
+	{{> twitter title }}
+      </div>
       <div class="join-action pull-right">
 	<p>{{#if currentUser}}{{join_button _id}}{{/if}}</p>
       </div>
@@ -53,9 +56,5 @@
 </template>
 
 <template name="twitter">
-  <a href="https://twitter.com/share" 
-     class="twitter-share-button" 
-     data-related="prashantkv,twiteriyer" 
-     data-text="Hack on the '{{this}}' project during @devthon!"
-     data-count="none"></a>
+<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1362636220.html#_=1363023601135&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http://proposals.devthon.org&amp;size=m&amp;text=Hack on the '{{this}}' project during @devthon!&amp;url=http://proposals.devthon.org" class="twitter-share-button twitter-count-none" style="width: 58px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
 </template>
