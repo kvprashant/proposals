@@ -17,7 +17,7 @@
       proposalNew: function() {
         if(Meteor.userId() == null) {
           //need to go to previous page yo!
-          this.setList('/'); // TODO to go to previous page
+          this.setList('/'); 
         } else {
           Session.set('page_id', 'proposalNew');
         }
@@ -37,7 +37,7 @@
       if (Meteor.userId()) {
         return;
       } else {
-        Router.setList('/'); // TODO to go to previous page
+        Router.setList(Backbone.history.fragment); 
       } 
     });
 
@@ -191,7 +191,7 @@
 
       },
       'click #cancelSubmitProposal': function(event) {
-        Router.setList('/'); // TODO to go to previous page
+        Router.setList(Backbone.history.fragment);
       },
       'focus, click input': function(evt) {
         $(evt.target).parents('.control-group').removeClass('error').find('.help-inline').text("");
@@ -200,27 +200,6 @@
         $(evt.target).parents('.control-group').removeClass('error').find('.help-inline').text("");
       }
     });
-    Template.proposals.hacks = function() {
-      return Proposals.find();
-    }
-
-    Template.proposals.events({
-      'click #proposalRemove': function(evt) {
-        console.log('deleted');
-      },
-      'click #vote': function(evt) {
-        console.log('upvote');
-      }
-    });
-
-    Template.proposal.proposal = function() {
-      var id = Session.get('proposal_id');
-      return Proposals.findOne({ _id : id });
-    }
-
-    Template.proposals.count = function() {
-      return !!Proposals.findOne();
-    }
 
     Template.setup.created = function() {
       if (!(window._gaq != null)) {
@@ -247,4 +226,3 @@
                                        <strong>' + title + '</strong> ' + message + '</div>');
          $(".alert").addClass("in");
     }
-

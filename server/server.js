@@ -5,6 +5,14 @@ Meteor.startup(function () {
   }
 
   Meteor.methods({
+    // get handle
+    getHandle: function(_id) {
+      return getHandle(_id);
+    },
+    // get profile name
+    getName: function(_id) {
+      return Meteor.users.findOne({"_id" : Meteor.user()._id}).profile.name;
+    },
     // handle create new proposal
     createProposal: function(options) {
       options = options || {};
@@ -85,6 +93,43 @@ Meteor.startup(function () {
                     $pull: { "joined.users" : { name : Meteor.user().profile.name } }
                   }
                  );
+    },
+    createComment: function(options) {
+      options = options || {};
+
+      // required parameter checks here
+      if (!Meteor.user()) {
+        throw new Meteor.Error(402, "You must be logged in to comment");
+      }
+
+      if (!options.proposalId)
+           throw new Meteor.Error(400, "Unable to update. Refresh the page and try again");
+
+      if (!options.commentId)
+           throw new Meteor.Error(400, "Comment ID is not generated");
+
+      options.user = Meteor.userId();
+      options.name = Meteor.user().profile.name;
+      options.handle = getHandle(Meteor.userId());
+
+      return Proposals.update( { _id : options.proposalId }, 
+                               { $push: { "comments" : _.omit(options, 'proposalId') } }
+             );
+    },
+    deleteComment: function(options) {
+      if (!options.proposalId)
+           throw new Meteor.Error(400, "Proposal ID is not generated");
+
+      if (!options.commentId)
+           throw new Meteor.Error(400, "Comment ID is not generated");
+       
+      if (!options.user)
+           throw new Meteor.Error(412, "Owner ID required");
+
+      if (options.user != Meteor.userId())
+           throw new Meteor.Error(401, "Unauthorized user trying to delete comment");
+
+      return Proposals.update({_id: options.proposalId}, { $pull: { comments: { commentId: options.commentId }}});
     }
   });  
 });

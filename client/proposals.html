@@ -1,46 +1,12 @@
-<template name="proposals">
-
-  <div class="row">
-    <div class="alert-container"></div>
-  </div>
-
-  <div class="proposals-container">
-    {{#if count}}
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Track</th>
-          <th>Proposer</th>
-          <th>Joined</th>
-          {{#if currentUser}}<th></th>{{/if}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#each hacks}}
-          <tr>
-            <td class="span3">{{ title }}</td>
-            <td clas="span5">{{ description }}</td>
-            <td class="span1">{{ track }}</td>
-            <td class="span2">{{ name}}</td>
-            <td class="span1">{{#if joined}}{{joined.count}}{{else}}0{{/if}}</td>
-            {{#if currentUser}}
-              {{join_button _id}}
-            {{/if}}
-            
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-        {{else}}
-        <h4>Be the first one to submit a proposal!</h4>
-        {{/if}}
-  </div>
-</template>
-
 <template name="proposal">
   {{#with proposal}}
+   <div class="proposal">
+    <div class="row">
+      <div class="span5 back-button">
+        <a href="/"><span>↩&nbsp;&nbsp;&nbsp;Back to Proposals</span></a>
+      </div>
+    </div>
+
     <div class="row">
       <div class="span12">
         <h3>{{title}}</h3>
@@ -48,25 +14,99 @@
     </div>
 
     <div class="row">
-      <div class="span4">
-        <p>Proposer: {{name}}</p>
+      <div class="span5">
+        <p>Proposer: <a href="http://twitter.com/{{handle}}" target="_blank">{{name}}</a></p>
       </div>
-      <div class="span4 offset4">
+      <div class="span2 track">
         <p>Hack Track: {{track}}</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="span10">
+      <div class="span7 description">
         <h4>Description</h4>
         <p>{{description}}</p>
       </div>
     </div>
 
     <div class="row">
-      <div class="span10">
-        <a href="/"><span>↩ Proposals</span></a>
+      <div class="span6 comments">
+        {{> comments}}
       </div>
     </div>
+
+   </div>
   {{/with}}
+</template>
+
+<template name="comments">
+  <h4>Comments ({{#if this.comments}}{{this.comments.length}}{{else}}0{{/if}})</h4>
+  {{#if currentUser}}
+    {{> commentNewForm }}
+    {{#each this.comments}}
+      {{> comment }}
+    {{/each}}
+  {{else}}
+    <div><p>Please login to view/post discussion</p></div>
+  {{/if}}
+</template>
+
+<template name="comment">
+  <div id="comment-{{ commentId }}" class="media comment span5">
+    <div class="avatar hovercard">
+      <a class="pull-left" href="http://twitter.com/{{ handle }}" target="_blank">
+        <img class="media-object" src="http://placehold.it/36x36/6f6f6f/ffffff&text=D">
+      </a>
+    </div>
+    <div class="media-body">
+      <!-- header actions -->
+      <header>
+        <span class="publisher-anchor-color">
+          <a href="http://twitter.com/{{ handle }}" data-action="profile" data-user="{{ user }}" title="{{name}}">{{ name }}</a>
+        </span>
+        <span class="bullet" aria-hidden="true">•</span>
+        <a href="#comment-{{ commentId }}" data-role="relative-time" 
+           class="time-ago" title="{{ format }}">{{ ago }}</a>
+        {{#if owner}}<button type="button" class="close delete" title="Delete Comment" aria-hidden="true">×</button>{{/if}}
+      </header>
+      <!-- message container -->       
+      <div class="post-message-container" data-role="message-container">
+        <div class="post-message publisher-anchor-color " data-role="message">
+          <p>{{ text }}</p>
+        </div>
+      </div>
+      <!-- footer actions -->
+    </div>
+  </div>
+  <hr class="comment span5">
+</template>
+
+<template name="commentsFooter">
+<footer>
+<menu>
+  <li class="voting" data-role="voting">
+  <a href="#" class="vote-up " data-action="upvote" title="Vote up">
+    <span class="updatable count count-0" data-role="likes">
+      0</span>
+    <span class="control">
+      <i aria-hidden="true" class="icon-arrow-2">
+      </i>
+    </span>
+  </a>
+  <a class="vote-down " href="#" data-action="downvote" title="Vote down">
+    <span class="updatable count count-0" data-role="dislikes">
+      0</span>
+    <span class="control">
+      <i aria-hidden="true" class="icon-arrow">
+      </i>
+    </span>
+  </a>
+  </li>
+ <li class="bullet" aria-hidden="true">
+ •</li>
+ <li class="reply">
+   <a href="#" data-action="reply">Reply</a>
+ </li>
+</menu>
+</footer>
 </template>

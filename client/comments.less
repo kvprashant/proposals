@@ -1,0 +1,100 @@
+.media {
+  width: 80%;
+  margin: 0;
+  padding: 0;
+
+  button.delete {
+    display: none;
+  }
+
+}
+
+.comments {
+  margin-top: 10px;
+  margin-bottom: 30px;
+
+  .media-body {
+    padding-left: 10px;
+  }
+
+  header {
+    margin-top: -5px;
+    font-size: 12px;
+
+    button.close:hover {
+      color: #D80000;
+    }
+
+  }
+
+  footer {
+    font-size: 11px;
+    color: #6c6c6c;
+
+    menu {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+
+      li {
+        float: left;
+
+        &.bullet {
+          padding: 0 5px;
+
+         &:first-child {
+          padding-left: 0;
+         }
+        }
+
+        a {
+          color: #6C6C6C;
+
+          &.vote-down {
+            border-left: 1px dotted rgba(75, 83, 94, 0.36);
+            padding-left: 6px;
+            padding-right: 0;
+          }
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  hr {
+    margin-left: 0;
+  }
+}
+
+.icon-arrow-2:before {
+    content: "+";
+}
+
+.icon-arrow:before {
+    content: "-";
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: 'embed-icons';
+    font-style: normal;
+    font-weight: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  width: 10px;
+  margin: 0 2px;
+}
+
+hr.comment {
+  width: 80%;
+}
+
+button {
+  &#submitComment {
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+}

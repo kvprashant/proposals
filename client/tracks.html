@@ -37,17 +37,19 @@
   <li class="span3 session">
     <div class="thumbnail">
       <div class="tweet-share pull-left">
-	{{> twitter title }}
+        {{#constant}}
+          {{> twitter this }}
+        {{/constant}}
       </div>
       <div class="join-action pull-right">
 	<p>{{#if currentUser}}{{join_button _id}}{{/if}}</p>
       </div>
-      <div class="discussion pull-left">
+      <a href="/proposal/{{_id}}"><div class="discussion pull-left">
 	<h3>{{ title }}</h3>
-      </div>
-      <div class="description pull-left">
+      </div></a>
+      <a href="/proposal/{{_id}}"><div class="description pull-left">
 	<p>{{ description }}</p>
-      </div>
+      </div></a>
       <div class="joined pull-left">
 	<p>Hackers: {{#if joined}}{{list joined.users name handle}}{{/if}}</p>
       </div>
@@ -56,5 +58,12 @@
 </template>
 
 <template name="twitter">
-<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1362636220.html#_=1363023601135&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http://proposals.devthon.org&amp;size=m&amp;text=Hack on the '{{this}}' project during @devthon!&amp;url=http://proposals.devthon.org" class="twitter-share-button twitter-count-none" style="width: 58px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>
+<!--<iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1362636220.html#_=1363023601135&amp;count=none&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http://proposals.devthon.org&amp;size=m&amp;text=Hack on the '{{this.title}}' project during @devthon!&amp;url=http://proposals.devthon.org/proposal/{{this._id}}" class="twitter-share-button twitter-count-none" style="width: 58px; height: 20px;" title="Twitter Tweet Button" data-twttr-rendered="true"></iframe>-->
+  <a href="https://twitter.com/share" 
+     class="twitter-share-button" 
+     data-related="prashantkv,twiteriyer" 
+     data-text="Hack on the '{{this.title}}' project during @devthon!"
+     data-url="http://proposals.devthon.org/proposal/{{this._id}}"
+     data-count="none"></a>
+
 </template>
