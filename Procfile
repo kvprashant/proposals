@@ -1,1 +1,1 @@
-web: PATH=.meteor/local/usr/bin:.meteor/local/usr/lib/meteor/bin:bin:/usr/local/bin:/usr/bin:/bin NODE_PATH=.meteor/local/usr/lib/meteor/lib/node_modules MONGO_URL=$MONGOHQ_URL .meteor/local/usr/lib/meteor/bin/node .meteor/local/build/main.js
+web: node main.js 
