@@ -27,3 +27,14 @@ Packages
     handlebars
     underscore
     moment
+
+Deploy
+--------
+
+1. Deploy on Meteor's free servers
+
+    meteor deploy appname.meteor.com --password
+
+2. Deploy on Heroku
+
+You may use a buildpack to deploy on to Heroku
