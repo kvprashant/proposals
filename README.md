@@ -37,4 +37,4 @@ Deploy
 
 2. Deploy on Heroku
 
-You may use a buildpack to deploy on to Heroku
+You may use a buildpack to deploy on to Heroku. Check the [thirdparty-buildpack](https://github.com/jordansissel/heroku-buildpack-meteor) for Meteor
