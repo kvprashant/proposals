@@ -15,15 +15,15 @@ Then, after checkout:
 Packages
 --------
 
-autopublish
-preserve-inputs
-accounts-twitter
-accounts-ui-unstyled
-less
-accounts-base
-bootstrap
-accounts-ui
-backbone
-handlebars
-underscore
-moment
+    autopublish
+    preserve-inputs
+    accounts-twitter
+    accounts-ui-unstyled
+    less
+    accounts-base
+    bootstrap
+    accounts-ui
+    backbone
+    handlebars
+    underscore
+    moment
