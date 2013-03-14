@@ -27,18 +27,22 @@
 
       // check if logged in user has joined current proposal
       var proposal = Proposals.findOne({ _id: proposalId, "joined.users.userId" : Meteor.user()._id });
+      var btnClass = "btn-mini";
+      if (Session.get('proposal_id'))
+        var btnClass = "btn-large";
+
       if (proposal) { // has joined one hack or is owner
         if (proposal.userId != Meteor.user()._id) { // if not owner
           // show Joined button
           return new Handlebars.SafeString('<td><button type="button" \
-                  class="btn btn-mini btn-success join_no">Joined</button></td>');
+                  class="btn ' + btnClass + ' btn-success join_no">Joined</button></td>');
         } else {
           return new Handlebars.SafeString('<td><button type="button" \
-                  class="btn btn-mini btn-disable">Proposed</button></td>');
+                  class="btn ' + btnClass + ' btn-disable">Proposed</button></td>');
         }
       } else { // not joined any hacks. show all Join button
         return new Handlebars.SafeString('<td><button type="button" \
-                class="btn btn-mini btn-warning join_yes">Join</button></td>');
+                class="btn ' + btnClass + ' btn-warning join_yes">Join</button></td>');
       }
     });
 

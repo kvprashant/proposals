@@ -62,3 +62,39 @@
         }
       }
     })
+
+    Template.proposal.events({
+      'click .join_yes': function(evt) {
+        Meteor.call("joinProposal", {
+          proposalId: this._id,
+        }, function(error, result) {
+             if (error) {
+               switch (error.error) {
+               case 409:
+                 $(evt.target).removeClass("join_yes").addClass("join_no");
+                 $(evt.target).click();
+                 break;
+               };
+             }
+           });
+       },
+      'click .join_no': function(evt) {
+        Meteor.call("unjoinProposal", {
+          proposalId: this._id,
+          owner: this.userId
+        }, function(error, result) {
+             if (error) {
+               switch (error.error) {
+               case 403:
+                 $(evt.target).removeClass("join_no").removeClass("join_yes");
+                 break;
+               default:
+                 $(evt.target).removeClass("join_no").addClass("join_yes");
+                 $(evt.target).click();
+                 break;
+               }
+               return;
+             }
+           });
+       }
+    });
