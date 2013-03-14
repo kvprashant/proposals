@@ -1,6 +1,9 @@
     Template.proposal.proposal = function() {
-      var id = Session.get('proposal_id');
-      return Proposals.findOne({ _id : id });
+      var doc = Proposals.findOne({ _id : Session.get('proposal_id') });
+      if (doc) {
+        document.title = doc.title + " - Devthon Proposals";
+        return Proposals.findOne({ _id : Session.get('proposal_id') });
+      }
     }
 
     Template.comment.format = function() {
