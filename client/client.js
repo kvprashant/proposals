@@ -138,7 +138,8 @@
           return false;
         }
 
-        var tracks = {"option1" : "web", "option2" : "mobile", "option3" : "hardware" };
+        var tracks = {"option1" : "web", "option2" : "mobile", "option3" : "hardware", 
+		      "option4" : "Media", "option5" : "Design", "option6" : "Other" };
         var choice = $('input[type=radio]:checked').val();
 
         var title = document.getElementById('title').value;
