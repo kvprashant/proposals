@@ -1,0 +1,76 @@
+<head>
+  <title>Devthon Proposals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Devthon Proposals"/>
+  <meta property="og:type" content="hackathon"/>
+  <meta property="og:url" content="http://proposals.devthon.org"/>
+  <meta property="og:image" content="http://placehold.it/180x100/000000/ffffff&text=Devthon"/>
+  <meta property="og:site_name" content="Devthon Proposals"/>
+  <meta property="og:description"
+          content="Propose your hacks for other geeks to contribute and ideate"/>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+    <!-- Part 1: Wrap all page content here -->
+    <div id="wrap">
+
+      <!-- Begin page content -->
+      <div class="container-proposal">
+
+        {{> header}}
+
+        <div class="row">
+          {{#isSession "main"}}
+            <div class="span6">
+              {{#unless currentUser}}
+                <h4>Sign in to join a hack proposal or to propose your own hack</h4>
+              {{/unless}}
+              {{#if currentUser}}
+                <h4>You may propose a hack or join one below</h4>
+              {{/if}}
+            </div>
+
+            <div class="span2 pull-right">
+              <div class="action">
+                {{#if currentUser}}
+                  {{proposalStatus 1}}
+                {{/if}}
+              </div>
+            </div>
+          {{/isSession}}
+        </div>
+
+          {{#isSession "main"}}
+            <hr>
+          {{/isSession}}
+
+          {{#isSession "main"}}
+            {{> trackset}}
+            {{!> proposals}}
+          {{/isSession}}
+
+          {{#isSession "proposalNew"}}
+            {{> proposalNewForm}}
+          {{/isSession}}
+
+          {{#isSession "proposalFilled"}}
+            <div><h3>Thank you</h3></div>
+            <div><a href="/">↩ Home</a></div>
+          {{/isSession}}
+
+          {{#isSession "proposalView"}}
+            {{> proposal}}
+          {{/isSession}}
+
+      </div>
+      <div id="push"></div>
+    </div>
+
+    {{> footer}}
+
+  {{> setup }}
+</body>
+
+<template name="setup"></template>

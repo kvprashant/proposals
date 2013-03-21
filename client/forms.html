@@ -1,0 +1,65 @@
+<template name="commentNewForm">
+  <form id="newComment">
+    <fieldset>
+      <textarea id="comment" class="span5" placeholder="Leave a comment..." rows="3"></textarea>
+      <button id="submitComment" type="submit" class="btn btn-success">Post</button>
+    </fieldset>
+  </form>
+</template>
+
+<template name="proposalNewForm">
+  <div class="alert-container"></div>
+
+  <form id="newProposal">
+    <fieldset>
+      <legend>New Hack Proposal</legend>
+
+      <div class="control-group control-group-title">
+        <label class="pull-left control-label" for="title">Title*</label>
+        <label id="titleCountHolder" class="counter pull-right"><span id="titleCount">{{titleCount}}</span></label>
+        <div class="controls">
+          <input id="title" class="{{boxWidth}}" type="text" placeholder="Proposal title in 50 or less characters">
+          <span class="help-inline"></span>
+        </div>
+      </div>
+
+      <div class="control-group control-group-description">
+        <label class="pull-left control-label" for="description">Summary*</label>
+        <label id="summaryCountHolder" class="counter pull-right"><span id="summaryCount">{{summaryCount}}</span></label>
+        <div class="controls">
+          <textarea id="description" class="{{boxWidth}}" rows="5" 
+                    placeholder="In 200 words: Summary of the project, the framework/tools and final hack features"></textarea>
+          <span class="help-inline"></span>
+        </div>
+      </div>
+
+      <div class="control-group control-group-tracks">
+        <label class="control-label" >Hack Track*</label>
+        <label class="control-label radio inline">
+          <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+          Web
+        </label>
+        <label class="control-label radio inline">
+          <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+          Mobile
+        </label>
+        <label class="control-label radio inline">
+          <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+          Hardware
+        </label>
+      </div>
+
+      <span class="field-block"></span>
+      <span class="field-block"></span>
+      
+      <label>Requirements</label>   
+      <input id="requirements" class="{{boxWidth}}" type="text">
+      <span class="help-block">E.g. Leap Motion device, Arduino board, etc</span>
+      <span class="field-block"></span>
+      <span class="field-block"></span>
+      
+      <button id="submitProposal" type="submit" class="btn spacing">Submit</button>
+      <button id="cancelSubmitProposal" type="reset" class="btn spacing">Cancel</button>
+    </fieldset>
+  </form>
+</template>

@@ -1,0 +1,290 @@
+@import "elements.less";
+
+@family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font: "Roboto Condensed";
+.fontfamily {
+  font-family: @font, @family;
+}
+/* Mixins */
+.heading {
+  .fontfamily;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 0;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  .fontfamily;
+  margin: 0 auto;
+  height: 98%;
+  max-width: 81%;
+/* The html and body elements cannot have any padding or margin. */
+}
+
+h1, h2, h3 {
+  line-height: 1.1em;
+}
+
+#login-buttons .login-display-name {
+  .fontfamily;
+}
+
+textarea {
+  .fontfamily;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  float: left;
+  display: block;
+  height: 60px;
+}
+
+.page-header {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+h1.brand {
+  .fontfamily;
+  font-size: 28px;
+  font-weight: 10px;
+  text-decoration: none;
+}
+
+#login-buttons {
+  a {
+    text-decoration: none;
+  }
+}
+
+.field-block {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.page-header {
+  border-bottom: 1px solid #D2D2D2;
+  margin: 20px 0 30px;
+}
+.login-buttons-dropdown-align-right {
+  float: right;
+}
+
+.action {
+  float: right;
+}
+
+.vertical {
+  .thumbnail {
+    padding: 18px;
+    margin: 10px 0;
+    min-height: 12em;
+    float: left;
+
+    &:hover {
+      cursor: default;
+      background-color: #EDEDED;
+      text-decoration: none;
+    }
+  }
+}
+
+.tracks {
+  margin-left: 7px;
+}
+
+.session {
+
+  .prehover {
+    color: #000000;
+  }
+
+  .thumbnail {
+    margin-bottom: 10px;
+    padding: 18px;
+    min-height: 22em;
+    word-wrap: break-word;
+
+    p {
+      color: #000000;
+    }
+
+    &.selected {
+      color: #005580;
+      border-color: #0088cc;
+      background-color: #F6F6F6;
+      text-decoration: none;
+      -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+      -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+      box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+    }
+
+    .join-action {
+      margin-left: 50%;
+    }
+
+    .discussion {
+      min-height: 6em;
+      padding-bottom: 10px;
+    }
+
+    .description {
+      min-height: 9em;
+      border-bottom: 1px solid #D2D2D2;
+      padding-bottom: 0em;
+      line-height: 1.4em;
+    }
+
+    .proposer {
+      padding-top: 0.5em;
+    }
+
+    .tweet-share {
+      padding-top: 2px;
+    }
+
+    .joined {
+      padding-top: 5px;
+    }
+
+    &:hover {
+      cursor: default;
+      background-color: #F6F6F6;
+      text-decoration: none;
+    }
+  }
+}
+
+.proposal {
+  margin: 0 auto;
+  display: block;
+
+  .description {
+    margin-top: 10px;
+  }
+
+  .back-button {
+    margin: 10px 30px;
+  }
+}
+
+.btn, input {
+  .fontfamily;
+}
+
+button.spacing {
+  margin-right: 12px;
+}
+
+label {
+  &.counter {
+    margin-right: 1.5em;
+  }
+}
+
+.help-inline {
+  padding: 0;
+}
+
+.controls {
+  padding-bottom: 10px;
+}
+
+.proposals-container {
+  margin-top: 10px;
+}
+
+.proposal-header {
+  margin-top: 20px;
+  margin-bottom: 20px
+}
+
+.status {
+  float: right;
+}
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s linear;
+  -moz-transition: opacity 0.5s linear;
+  -o-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+#footer {
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid #D2D2D2;
+  font-size: 12px;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.table tbody {
+  tr {
+    padding: 4px;
+
+    &:hover {
+      background-color: #EDEDED;
+      cursor: pointer;
+    }
+
+    td {
+      
+     
+      a {
+        padding: 0;
+        margin: 0;
+        color: #000000;
+        display: block;
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+          color: #000000;
+          text-decoration:none;
+        }
+      }
+    }
+  }
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+width: auto;
+max-width: 680px;
+}
+.container .credit {
+margin: 20px 0;
+}
